@@ -243,7 +243,7 @@ ENV NODE_ENV=production
 USER node
 
 # Start gateway server with default config.
-# Binds to loopback (127.0.0.1) by default for security.
+# Binds to loopback (127.0.0.1) by default for security. changed to 0.0.0.0 for railway.
 #
 # IMPORTANT: With Docker bridge networking (-p 18789:18789), loopback bind
 # makes the gateway unreachable from the host. Either:
@@ -255,5 +255,5 @@ USER node
 #   - aliases: /health and /ready
 # For external access from host/ingress, override bind to "lan" and set auth.
 HEALTHCHECK --interval=3m --timeout=10s --start-period=15s --retries=3 \
-  CMD node -e "fetch('http://127.0.0.1:18789/healthz').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+  CMD node -e "fetch('http://0.0.0.0:18789/healthz').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
 CMD ["node", "openclaw.mjs", "gateway", "--allow-unconfigured"]
