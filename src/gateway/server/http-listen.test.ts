@@ -75,7 +75,7 @@ describe("listenGatewayHttpServer", () => {
     await expect(
       listenGatewayHttpServer({
         httpServer: fake as unknown as HttpServer,
-        bindHost: "127.0.0.1",
+        bindHost: "0.0.0.0",
         port: 18789,
       }),
     ).rejects.toBeInstanceOf(GatewayLockError);
@@ -90,7 +90,7 @@ describe("listenGatewayHttpServer", () => {
     await expect(
       listenGatewayHttpServer({
         httpServer: fake as unknown as HttpServer,
-        bindHost: "127.0.0.1",
+        bindHost: "0.0.0.0",
         port: 18789,
       }),
     ).rejects.toBeInstanceOf(GatewayLockError);
